@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesing API</title>
+</head>
+    <h1>Testing API HERE</h1>
+    <input id="url" type="text" style="width: 190px; display: block; margin-top: 4px; margin-bottom: 4px;" placeholder="API URL" />
+    <input id="slug" type="text" style="width: 190px; display: block; margin-top: 4px; margin-bottom: 4px;" placeholder="Slug" />
+    <input type="radio" name="method" value="GET" checked><span>GET</span>
+    <input type="radio" name="method" value="POST"><span>POST</span>
+    <input type="radio" name="method" value="DELETE"><span>DELETE</span>
+    <input type="radio" name="method" value="PUT" class=""><span>PUT</span>
+    <br/>
+    <button id="with_slug" type="button" class="display: block;">Query API with Slug</button>
+    <button id="without_slug" type="button" class="display: block;">Query API without Slug</button>
+<body>
+    
+    <script src="./script/jquery.min.js"></script>
+    <script src="./script/bootstrap.bundle.min.js"></script>
+    <script src="./script/axios.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            
+            $('#with_slug').on('click',function(){
+                let url = $('#url').val();
+                let slug = $('#slug').val();
+                let method = $('input[name="method"]:checked').val();
+
+                if(slug && url){
+                    let api_url = url + '/' + slug;
+                    axios({
+                    url: api_url,
+                    method: method,
+                    headers:{
+                        Authorization: 'Bearer 25|bP2AIRvekiKRXLjL1FeDRE8nKVH1TRV0sZNvCwl2',
+                        'Content-Type':'application/json',
+                    },
+                    data:{
+                        _method:'DELETE'
+                    }
+
+                }).then((res)=>{
+                    console.log(res);
+                }).catch((err)=>{
+                    console.log(err);
+                });
+                }else{
+                    alert('Please Enter a valid url and slug')
+                }
+                
+            });
+
+            $('#without_slug').on('click',function(){
+                let url = $('#url').val();
+
+                let method = $('input[name="method"]').val();
+
+                if(url){
+                    let api_url = url;
+                    axios({
+                    url: api_url,
+                    method: method,
+                    headers:{
+                        Authorization: 'Bearer 25|bP2AIRvekiKRXLjL1FeDRE8nKVH1TRV0sZNvCwl2',
+                        'Content-Type':'application/json',
+                    },
+                    data:{
+                        _method:'DELETE'
+                    }
+
+                }).then((res)=>{
+                    console.log(res);
+                }).catch((err)=>{
+                    console.log(err);
+                });
+                }else{
+                    alert('Please Enter a valid URL')
+                }
+                
+            });
+
+        });
+    </script>
+</body>
+</html>
