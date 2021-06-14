@@ -39,9 +39,9 @@
                         Authorization: 'Bearer 25|bP2AIRvekiKRXLjL1FeDRE8nKVH1TRV0sZNvCwl2',
                         'Content-Type':'application/json',
                     },
-                    data:{
-                        _method:'DELETE'
-                    }
+                    // data:{
+                    //     _method:'DELETE'
+                    // }
 
                 }).then((res)=>{
                     console.log(res);
@@ -59,18 +59,24 @@
 
                 let method = $('input[name="method"]').val();
 
+                // alert($('input[name="method"]:checked').val());
+
                 if(url){
                     let api_url = url;
                     axios({
                     url: api_url,
-                    method: method,
+                    method: "POST",
+                    data:{
+                        category: 'books',
+                        title: 'API Testing KIT',
+                        description: 'This is a complete description of all testing kit app',
+                        pricing_type:'negotiable',
+                        price: 100000,
+                    },
                     headers:{
-                        Authorization: 'Bearer 25|bP2AIRvekiKRXLjL1FeDRE8nKVH1TRV0sZNvCwl2',
+                        Authorization: 'Bearer 29|NWymECCabQ1OMz6ULZ8wDajexc4x6QqEJRxTkSNN',
                         'Content-Type':'application/json',
                     },
-                    data:{
-                        _method:'DELETE'
-                    }
 
                 }).then((res)=>{
                     console.log(res);
